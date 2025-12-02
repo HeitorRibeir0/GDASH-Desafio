@@ -1,0 +1,13 @@
+# Ambientes Virtuais
+venv/
+.venv/
+env/
+lib/
+Scripts/
+
+# Arquivos compilados do Python
+__pycache__/
+*.pyc
+pyvenv.cfg
+# Dados do MongoDB (para não subir o banco de dados pro Git)
+mongo_data/
