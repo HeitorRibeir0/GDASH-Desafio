@@ -28,7 +28,7 @@ parameters = pika.ConnectionParameters('localhost',
 connection = pika.BlockingConnection(parameters)
 channel = connection.channel()
 
-channel.queue_declare("Temp Data")
+channel.queue_declare(queue="Temp Data", durable = True)
 channel.basic_publish(exchange='',
                       routing_key="Temp Data",
                       body= jsonconvertido)
