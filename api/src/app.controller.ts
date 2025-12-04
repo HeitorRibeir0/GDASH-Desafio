@@ -1,17 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post()
+  async createData(@Body() data: any) {
+    return this.appService.createData(data);
   }
 
-  @Get('test')
-  async sendtest() {
-    return this.appService.createTest();
+  @Get('/api/weather/logs')
+  async findAlldata() {
+    return this.appService.findAlldata();
   }
 }

@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"log"
+	"net/http"
 
 	amqp "github.com/rabbitmq/amqp091-go"
 )
@@ -46,6 +48,16 @@ func main() {
 	go func() {
 		for d := range msgs {
 			log.Printf("Received a message: %s", d.Body)
+
+			b := bytes.NewBuffer(d.Body)
+
+			resp, err := http.Post("http://localhost:3000", "application/json", b)
+			if err != nil {
+				log.Print(err)
+			continue
+			}
+			
+			resp.Body.Close()
 		}
 
 	}()
