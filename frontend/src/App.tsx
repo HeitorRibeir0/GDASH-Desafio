@@ -55,10 +55,10 @@ function App() {
     setData(null);
   };
 
-  useEffect(() => {
+useEffect(() => {
     if (!token) return;
 
-    (async () => {
+    const fetchData = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/weather/logs', {
           headers: { Authorization: `Bearer ${token}` }
@@ -70,9 +70,7 @@ function App() {
       } catch (error) {
         console.error("Erro ao buscar logs:", error);
       }
-    })();
 
-    (async () => {
       try {
         const response = await fetch('http://localhost:3000/api/weather/insights', {
           headers: { Authorization: `Bearer ${token}` }
@@ -84,8 +82,15 @@ function App() {
       } catch (error) {
         console.error("Erro ao buscar insights:", error);
       }
-    })();
-  }, [token]);
+    };
+
+    fetchData();
+
+    const interval = setInterval(fetchData, 30000);
+
+    return () => clearInterval(interval);
+
+  }, [token]); 
 
   useEffect(() => {
     (async () => {
