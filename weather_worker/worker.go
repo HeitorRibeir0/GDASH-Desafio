@@ -14,7 +14,7 @@ func failOnError(err error, msg string) {
 	}
 }
 func main() {
-	conn, err := amqp.Dial("amqp://admin:admin@localhost:5672/")
+	conn, err := amqp.Dial("amqp://admin:admin@rabbitmq:5672/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
 
@@ -51,7 +51,7 @@ func main() {
 
 			b := bytes.NewBuffer(d.Body)
 
-			resp, err := http.Post("http://localhost:3000", "application/json", b)
+			resp, err := http.Post("http://api:3000", "application/json", b)
 			if err != nil {
 				log.Print(err)
 			continue

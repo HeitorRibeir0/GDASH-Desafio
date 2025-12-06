@@ -20,4 +20,15 @@ export class UsersService {
     async findByEmail(email: string): Promise<UserDocument | null> {
         return this.userModel.findOne({email: email}).exec();
     }
+
+  async update(id: string, data: any) {
+    if (data.senha) {
+      data.senha = await bcrypt.hash(data.senha, 10);
+    }
+    return this.userModel.findByIdAndUpdate(id, data, { new: true }).exec();
+  }
+
+  async remove(id: string) {
+    return this.userModel.findByIdAndDelete(id).exec();
+  }
 }

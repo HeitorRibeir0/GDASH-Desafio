@@ -9,7 +9,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/weather_db'),
+    MongooseModule.forRoot('mongodb://mongodb:27017/weather_db'),
 
     MongooseModule.forFeature([
       {

@@ -1,10 +1,16 @@
 services:
+  # 1. Banco de Dados
   mongodb:
     container_name: mongo
     image: mongo:latest
     ports:
       - "27017:27017"
+    volumes:
+      - ./mongo_data:/data/db
+    networks:
+      - app-network
 
+  # 2. Message Broker
   rabbitmq:
     container_name: rabbitmq
     image: rabbitmq:4-management
@@ -14,9 +20,50 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: admin
+    networks:
+      - app-network
 
-    
+  # 3. API
+  api:
+    build: ./api
+    container_name: api_nest
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+  # 4. Coletor
+  weather_collector:
+    build: ./weather_collector
+    container_name: collector_python
+    depends_on:
+      - rabbitmq
+    networks:
+      - app-network
+    restart: on-failure
+
+  # 5. Worker
+  weather_worker:
+    build: ./weather_worker
+    container_name: worker_go
+    depends_on:
+      - rabbitmq
+      - api
+    networks:
+      - app-network
+    restart: on-failure
+
+  # 6. Frontend
+  frontend:
+    build: ./frontend
+    container_name: frontend_react
+    ports:
+      - "5173:80" 
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
-    

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './App.css';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -91,7 +90,6 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        // Mantive o limit=151 para você ver "mais pokemons" no scroll
         const response = await fetch('http://localhost:3000/pokemon?limit=151');
         if (response.ok) {
           const data = await response.json();
@@ -181,7 +179,8 @@ function App() {
           <div className="flex items-center gap-2">
             <h1 className="text-xl font-bold text-slate-100 tracking-tight">Weather<span className="text-indigo-400">Dash</span></h1>
           </div>
-          <Button variant="ghost" onClick={handleLogout} className="text-slate-400 hover:text-red-400 hover:bg-red-950/30 rounded-lg transition-colors">
+          
+          <Button variant="ghost" onClick={handleLogout} className="text-slate-400 hover:text-red-400 hover:bg-red-950/30 rounded-xl transition-colors">
             Sair
           </Button>
         </div>
@@ -213,14 +212,13 @@ function App() {
                 <div className="flex items-center justify-between px-1 h-[36px]">
                     <h2 className="text-2xl font-semibold tracking-tight text-white">Monitoramento</h2>
                     <a href="http://localhost:3000/api/weather/export/csv" download>
-                        <Button variant="outline" size="sm" className="bg-slate-900 border-slate-700 text-slate-300 hover:bg-indigo-950 hover:text-indigo-300 hover:border-indigo-800 transition-all rounded-lg">
+                        <Button variant="outline" size="sm" className="bg-slate-900 border-slate-700 text-slate-300 hover:bg-indigo-950 hover:text-indigo-300 hover:border-indigo-800 transition-all rounded-xl">
                         📥 Exportar CSV
                         </Button>
                     </a>
                 </div>
                 
                 <Card className="bg-slate-900/50 border-slate-800 shadow-xl rounded-2xl overflow-hidden">
-                    {/* VOLTOU PARA h-[400px] */}
                     <div className="h-[400px] overflow-y-auto custom-scrollbar relative">
                         <Table>
                             <TableHeader className="bg-slate-900 sticky top-0 z-10 shadow-sm shadow-slate-950/50">
@@ -270,7 +268,6 @@ function App() {
                 </div>
 
                 <Card className="bg-slate-900/50 border-slate-800 shadow-lg rounded-2xl overflow-hidden">
-                    {/* VOLTOU PARA h-[400px] */}
                     <div className="h-[400px] overflow-y-auto custom-scrollbar relative">
                         <Table>
                             <TableHeader className="bg-slate-900 sticky top-0 z-10 shadow-sm shadow-slate-950/50">
