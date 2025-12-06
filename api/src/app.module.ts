@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Weather, WeatherSchema } from './schema/weather.schema';
+import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,6 +17,10 @@ import { Weather, WeatherSchema } from './schema/weather.schema';
       }
     ]
     ),
+
+    UsersModule,
+
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -27,6 +27,10 @@ export class Weather {
     @Prop()
     precipitation: number;
 
+    createdAt: string;
+    updatedAt: string;
+
+
 }
 
 export const WeatherSchema = SchemaFactory.createForClass(Weather)

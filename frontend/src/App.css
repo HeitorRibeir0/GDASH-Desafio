@@ -1,42 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos para o fundo e a tela de login */
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #00b4d8, #1e40af);
+  color: #fff;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem;
   text-align: center;
 }
 
+.card {
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  background: #1e2a47;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+/* Estilos para o botão de login */
+button {
+  background-color: #4f6d7a;
+  border-radius: 25px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #3b5366;
+}
+
+/* Animação para o logo */
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+/* Estilo para o título */
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.card-header {
+  padding-bottom: 1rem;
+}
+
+.card-footer {
+  padding-top: 1rem;
+}
+
+/* Estilos para o Dashboard */
+.table {
+  width: 100%;
+  margin-top: 2rem;
+  border-radius: 12px;
+  background-color: #2c3e50;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.table th, .table td {
+  padding: 1rem;
+  text-align: center;
+}
+
+.table th {
+  background-color: #34495e;
+  color: #fff;
+}
+
+.table td {
+  background-color: #1e2a47;
+  color: #ddd;
+}
+
+.table tbody tr:hover {
+  background-color: #3b5366;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilo para o Insight de IA */
+.card-insight {
+  background-color: #3b5366;
+  padding: 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-insight h3 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.card-insight p {
+  font-size: 1.2rem;
+  color: #b0bec5;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .table th, .table td {
+    padding: 0.8rem;
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  h1 {
+    font-size: 2rem;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
