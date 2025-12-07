@@ -20,6 +20,9 @@ O fluxo de dados segue o seguinte pipeline:
 
 `[Python Coletor]` ➔ *(RabbitMQ)* ➔ `[Go Worker]` ➔ *(HTTP)* ➔ `[NestJS API]` ➔ *(MongoDB)* ➔ `[React Dashboard]`
 
+## Link de apresentação:
+[Acessar Apresentação](https://youtu.be/0N0tOhQtLWw)
+
 ---
 
 ##  Tecnologias Utilizadas
