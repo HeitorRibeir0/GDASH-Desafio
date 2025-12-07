@@ -30,7 +30,7 @@ function App() {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:3000/auth/login', {
+      const response = await fetch('http://34.217.209.8:3000/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, senha })
@@ -60,7 +60,7 @@ useEffect(() => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/weather/logs', {
+        const response = await fetch('http://34.217.209.8:3000/api/weather/logs', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (response.ok) {
@@ -72,7 +72,7 @@ useEffect(() => {
       }
 
       try {
-        const response = await fetch('http://localhost:3000/api/weather/insights', {
+        const response = await fetch('http://34.217.209.8:3000/api/weather/insights', {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (response.ok) {
@@ -95,7 +95,7 @@ useEffect(() => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await fetch('http://localhost:3000/pokemon?limit=151');
+        const response = await fetch('http://34.217.209.8:3000/pokemon?limit=151');
         if (response.ok) {
           const data = await response.json();
           setPokemons(data.results);
@@ -216,7 +216,7 @@ useEffect(() => {
             <section className="space-y-4">
                 <div className="flex items-center justify-between px-1 h-[36px]">
                     <h2 className="text-2xl font-semibold tracking-tight text-white">Monitoramento</h2>
-                    <a href="http://localhost:3000/api/weather/export/csv" download>
+                    <a href="http://34.217.209.8:3000/api/weather/export/csv" download>
                         <Button variant="outline" size="sm" className="bg-slate-900 border-slate-700 text-slate-300 hover:bg-indigo-950 hover:text-indigo-300 hover:border-indigo-800 transition-all rounded-xl">
                         📥 Exportar CSV
                         </Button>
