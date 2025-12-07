@@ -63,6 +63,15 @@ function App() {
         const response = await fetch('http://34.217.209.8:3000/api/weather/logs', {
           headers: { Authorization: `Bearer ${token}` }
         });
+
+        // --- CORREÇÃO AQUI ---
+        // Se o token for inválido (401), fazemos logout forçado
+        if (response.status === 401) {
+            handleLogout();
+            return;
+        }
+        // ---------------------
+
         if (response.ok) {
           const data = await response.json();
           setData(data);
@@ -75,6 +84,14 @@ function App() {
         const response = await fetch('http://34.217.209.8:3000/api/weather/insights', {
           headers: { Authorization: `Bearer ${token}` }
         });
+
+        // --- CORREÇÃO AQUI TAMBÉM ---
+        if (response.status === 401) {
+            handleLogout();
+            return;
+        }
+        // ----------------------------
+
         if (response.ok) {
           const data = await response.text();
           setInsight(data);
@@ -118,7 +135,7 @@ function App() {
   // --- Tela de Login ---
   if (!token) {
     return (
-      <div className="w-full min-h-screen flex items-center justify-center bg-white selection:bg-[#A8D3B0] selection:text-white overflow-hidden">
+      <div className="w-full min-h-screen flex items-center justify-center bg-[#A8D3B0] selection:bg-[#A8D3B0] selection:text-white overflow-hidden">
         <div className="fixed inset-0 pointer-events-none">
             <div className="absolute -top-[20%] -left-[10%] w-[500px] h-[500px] bg-[#A8D3B0] opacity-20 rounded-full blur-[100px]" />
             <div className="absolute top-[40%] -right-[10%] w-[400px] h-[400px] bg-[#A8D3B0] opacity-20 rounded-full blur-[100px]" />
